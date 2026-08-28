@@ -757,7 +757,7 @@
             requestAnimationFrame(animateDiamonds);
         }
         animateDiamonds();
- <audio id="phonkMusic" loop>
+ <audio id="phonkMusic">
     <source src="phonk.mp3" type="audio/mpeg">
 </audio>
 
@@ -776,6 +776,25 @@ if (musicBtn) {
         }
     });
 }
+/* NEXT SONG */
+const songs = [
+    "phonk.mp3",
+    "phonk2.mp3"
+];
+
+let currentSong = 0;
+
+music.addEventListener("ended", function () {
+    currentSong++;
+
+    if (currentSong >= songs.length) {
+        currentSong = 0;
+    }
+
+    music.src = songs[currentSong];
+    music.play();
+});
+        
 </script>
     
 </body>
