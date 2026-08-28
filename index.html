@@ -953,67 +953,120 @@
             });
 
         }
-
-        /* ================= UID CHECK ================= */
 async function checkUID() {
-
     const uid = document.getElementById("testUID").value.trim();
     const status = document.getElementById("verifyStatus");
 
-    if (!uid || uid.length < 5) {
-        status.innerHTML =
-            '<span style="color:#ff0055;">❌ Please enter a valid Free Fire UID.</span>';
+    if (!/^\d{5,15}$/.test(uid)) {
+        status.innerHTML = `
+            <span style="color:#ff0055;">
+                ❌ Please enter a valid Free Fire UID.
+            </span>
+        `;
         return;
     }
 
-    status.innerHTML =
-        '<span style="color:var(--neon-cyan);">⏳ Checking player...</span>';
+    status.innerHTML = `
+        <span style="color:var(--neon-cyan);">
+            ⏳ Checking Free Fire account...
+        </span>
+    `;
 
     try {
+        const apiURL =
+            `https://freefireinfo-zy9l.onrender.com/api/v1/player-profile?uid=${encodeURIComponent(uid)}&server=SG`;
 
-        const response = await fetch(
-            `https://free-fire-api.vercel.app/api/v1/player-profile?uid=${encodeURIComponent(uid)}&server=SG`
-        );
+        const response = await fetch(apiURL);
 
         if (!response.ok) {
-            throw new Error("API Error");
+            throw new Error("API request failed");
         }
 
         const data = await response.json();
 
-        const playerName =
-            data.nickname ||
-            data.name ||
-            data.username ||
-            data.player_name;
+        const player = data.basicinfo || data.basicInfo;
 
-        if (playerName) {
-
+        if (!player || !player.nickname) {
             status.innerHTML = `
                 <div style="
-                    margin-top:10px;
-                    padding:15px;
-                    border:1px solid var(--neon-green);
+                    color:#ff0055;
+                    padding:12px;
+                    border:1px solid #ff0055;
                     border-radius:8px;
-                    background:rgba(0,255,102,0.08);
+                    margin-top:10px;
                 ">
-                    <div style="color:var(--neon-green); font-weight:700;">
-                        ✅ PLAYER FOUND
-                    </div>
-
-                    <div style="margin-top:8px;">
-                        🆔 UID:
-                        <strong>${uid}</strong>
-                    </div>
-
-                    <div style="margin-top:5px;">
-                        👤 Username:
-                        <strong style="color:var(--neon-cyan);">
-                            ${playerName}
-                        </strong>
-                    </div>
+                    ❌ Player not found.<br>
+                    <small>Please check the UID and try again.</small>
                 </div>
             `;
+            return;
+        }
+
+        const nickname = player.nickname;
+        const level = player.level || "N/A";
+        const region = player.region || "SG";
+
+        status.innerHTML = `
+            <div style="
+                margin-top:12px;
+                padding:16px;
+                border:1px solid var(--neon-green);
+                border-radius:10px;
+                background:rgba(0,255,102,0.08);
+                box-shadow:0 0 15px rgba(0,255,102,0.15);
+            ">
+                <div style="
+                    color:var(--neon-green);
+                    font-weight:700;
+                    font-size:1rem;
+                    margin-bottom:10px;
+                ">
+                    ✅ PLAYER FOUND
+                </div>
+
+                <div style="margin:6px 0;">
+                    🆔 UID:
+                    <strong>${uid}</strong>
+                </div>
+
+                <div style="margin:6px 0;">
+                    👤 Username:
+                    <strong style="color:var(--neon-cyan);">
+                        ${nickname}
+                    </strong>
+                </div>
+
+                <div style="margin:6px 0;">
+                    ⭐ Level:
+                    <strong>${level}</strong>
+                </div>
+
+                <div style="margin:6px 0;">
+                    🌍 Region:
+                    <strong>${region}</strong>
+                </div>
+            </div>
+        `;
+
+    } catch (error) {
+
+        console.error("Free Fire API Error:", error);
+
+        status.innerHTML = `
+            <div style="
+                color:#ff0055;
+                padding:12px;
+                border:1px solid #ff0055;
+                border-radius:8px;
+                margin-top:10px;
+            ">
+                ❌ Unable to check player right now.
+                <br>
+                <small>Please try again in a few seconds.</small>
+            </div>
+        `;
+    }
+}
 
         } else {
 
