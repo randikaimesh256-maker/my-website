@@ -619,15 +619,6 @@
         let selectedPrice = '';
         let audioStarted = false;
 
-        // Auto/Interaction Audio Player
-        function startAudioOnInteraction() {
-            if (!audioStarted) {
-                const music = document.getElementById('bgMusic');
-                music.play().then(() => {
-                    audioStarted = true;
-                }).catch(() => {});
-            }
-        }
 
         function toggleAudio(e) {
             e.stopPropagation();
