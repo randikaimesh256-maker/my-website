@@ -770,8 +770,6 @@
   <audio id="phonkMusic" loop>
     <source src="phonk.mp3" type="audio/mpeg">
 </audio>
-    <button onclick="changeVolume(-0.1)">🔉−</button>
-<button onclick="changeVolume(0.1)">🔊+</button>
 
 <script>
     const music = document.getElementById("phonkMusic");
@@ -785,10 +783,6 @@
             music.pause();
         }
     });
-    function changeVolume(amount) {
-    const music = document.getElementById("phonkMusic");
-    music.volume = Math.max(0, Math.min(1, music.volume + amount));
-}
 </script>
 </body>
 </html>
