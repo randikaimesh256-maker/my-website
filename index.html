@@ -776,23 +776,6 @@ if (musicBtn) {
         }
     });
 }
-/* NEXT SONG */
-const songs = [
-    "phonk.mp3",
-    "phonk2.mp3"
-];
-
-let currentSong = 0;
-
-music.addEventListener("ended", function () {
-    currentSong++;
-
-    if (currentSong >= songs.length) {
-        currentSong = 0;
-    }
-
-    music.src = songs[currentSong];
-    music.play();
 });
         
 </script>
