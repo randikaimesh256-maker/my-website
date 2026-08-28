@@ -774,9 +774,7 @@
 <script>
     const music = document.getElementById("phonkMusic");
     const musicBtn = document.querySelector(".music-btn");
-    <div>
-    <button onclick="changeVolume(-0.1)">🔉 −</button>
-    <button onclick="changeVolume(0.1)">🔊 +</button>
+    
 </div>
 
     musicBtn.addEventListener("click", () => {
@@ -786,8 +784,6 @@
             music.pause();
         }
     });
-    function changeVolume(amount) {
-    music.volume = Math.max(0, Math.min(1, music.volume + amount));
 }
 </script>
 </body>
