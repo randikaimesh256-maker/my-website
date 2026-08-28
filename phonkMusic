@@ -774,7 +774,7 @@
 <script>
     const music = document.getElementById("phonkMusic");
     const musicBtn = document.querySelector(".music-btn");
-    music.volume = Math.min(music.volume + 0.25, 1);
+    
 
     musicBtn.addEventListener("click", () => {
         if (music.paused) {
