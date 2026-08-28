@@ -952,29 +952,48 @@
 
             });
 
-        }
+        }<script>
 async function checkUID() {
-    const uid = document.getElementById("testUID").value.trim();
+    const uidInput = document.getElementById("testUID");
     const status = document.getElementById("verifyStatus");
 
+    const uid = uidInput.value.trim();
+
+    // UID format check
     if (!/^\d{5,15}$/.test(uid)) {
         status.innerHTML = `
-            <span style="color:#ff0055;">
+            <div style="
+                color:#ff0055;
+                padding:12px;
+                border:1px solid #ff0055;
+                border-radius:8px;
+                margin-top:10px;
+            ">
                 ❌ Please enter a valid Free Fire UID.
-            </span>
+            </div>
         `;
         return;
     }
 
+    // Loading
     status.innerHTML = `
-        <span style="color:var(--neon-cyan);">
+        <div style="
+            color:var(--neon-cyan);
+            padding:12px;
+            border:1px solid var(--neon-cyan);
+            border-radius:8px;
+            margin-top:10px;
+        ">
             ⏳ Checking Free Fire account...
-        </span>
+        </div>
     `;
 
     try {
+
         const apiURL =
-            `https://freefireinfo-zy9l.onrender.com/api/v1/player-profile?uid=${encodeURIComponent(uid)}&server=SG`;
+            "https://freefireinfo-zy9l.onrender.com/api/v1/player-profile?uid=" +
+            encodeURIComponent(uid) +
+            "&server=SG";
 
         const response = await fetch(apiURL);
 
@@ -984,67 +1003,84 @@ async function checkUID() {
 
         const data = await response.json();
 
-        const player = data.basicinfo || data.basicInfo;
+        console.log("API Response:", data);
+
+        // Different API response formats
+        const player =
+            data.basicinfo ||
+            data.basicInfo ||
+            data.player ||
+            data.data;
 
         if (!player || !player.nickname) {
+
             status.innerHTML = `
                 <div style="
                     color:#ff0055;
-                    padding:12px;
+                    padding:15px;
                     border:1px solid #ff0055;
-                    border-radius:8px;
+                    border-radius:10px;
                     margin-top:10px;
                 ">
-                    ❌ Player not found.<br>
-                    <small>Please check the UID and try again.</small>
+                    ❌ PLAYER NOT FOUND
+
+                    <br><br>
+
+                    <small>
+                        Please check your UID and make sure it is an SG server account.
+                    </small>
                 </div>
             `;
+
             return;
         }
 
         const nickname = player.nickname;
-        const level = player.level || "N/A";
-        const region = player.region || "SG";
+        const level = player.level ?? "N/A";
+        const region = player.region ?? "SG";
 
+        // SUCCESS
         status.innerHTML = `
             <div style="
                 margin-top:12px;
-                padding:16px;
+                padding:18px;
                 border:1px solid var(--neon-green);
                 border-radius:10px;
                 background:rgba(0,255,102,0.08);
-                box-shadow:0 0 15px rgba(0,255,102,0.15);
+                box-shadow:0 0 20px rgba(0,255,102,0.15);
             ">
+
                 <div style="
                     color:var(--neon-green);
                     font-weight:700;
-                    font-size:1rem;
-                    margin-bottom:10px;
+                    font-size:1.1rem;
+                    margin-bottom:12px;
                 ">
                     ✅ PLAYER FOUND
                 </div>
 
-                <div style="margin:6px 0;">
+                <div style="margin:8px 0;">
                     🆔 UID:
                     <strong>${uid}</strong>
                 </div>
 
-                <div style="margin:6px 0;">
+                <div style="margin:8px 0;">
                     👤 Username:
                     <strong style="color:var(--neon-cyan);">
                         ${nickname}
                     </strong>
                 </div>
 
-                <div style="margin:6px 0;">
+                <div style="margin:8px 0;">
                     ⭐ Level:
                     <strong>${level}</strong>
                 </div>
 
-                <div style="margin:6px 0;">
+                <div style="margin:8px 0;">
                     🌍 Region:
                     <strong>${region}</strong>
                 </div>
+
             </div>
         `;
 
@@ -1055,19 +1091,25 @@ async function checkUID() {
         status.innerHTML = `
             <div style="
                 color:#ff0055;
-                padding:12px;
+                padding:15px;
                 border:1px solid #ff0055;
-                border-radius:8px;
+                border-radius:10px;
                 margin-top:10px;
             ">
                 ❌ Unable to check player right now.
-                <br>
-                <small>Please try again in a few seconds.</small>
+
+                <br><br>
+
+                <small>
+                    The Free Fire API is unavailable or not responding.
+                    Please try again later.
+                </small>
             </div>
         `;
     }
 }
-
+</script>
+        status.innerH
         } else {
 
             status.innerHTML =
