@@ -766,24 +766,29 @@
             requestAnimationFrame(animateDiamonds);
         }
         animateDiamonds();
-    </script>
-    <audio id="phonkMusic" loop>
+        <audio id="phonkMusic" loop>
     <source src="phonk.mp3" type="audio/mpeg">
 </audio>
 
 <script>
     const music = document.getElementById("phonkMusic");
     const musicBtn = document.querySelector(".music-btn");
-    
-</div>
 
-    musicBtn.addEventListener("click", () => {
-        if (music.paused) {
-            music.play();
-        } else {
-            music.pause();
-        }
-    });
+    if (musicBtn) {
+        musicBtn.addEventListener("click", () => {
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
+   
+    
 }
 </script>
 </body>
