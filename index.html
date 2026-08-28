@@ -1,1170 +1,1247 @@
+```html
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GAMING IDU | GAMING VENOM</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<style>
-:root{
-    --bg:#030508;
-    --card:#0c101a;
-    --cyan:#00f3ff;
-    --purple:#9d4edd;
-    --green:#00ff66;
-    --orange:#ff5500;
-    --white:#fff;
-    --dim:#94a3b8;
-}
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    scroll-behavior:smooth;
-}
-
-body{
-    background:var(--bg);
-    color:var(--white);
-    font-family:'Poppins',sans-serif;
-    min-height:100vh;
-    overflow-x:hidden;
-}
-
-#diamondCanvas{
-    position:fixed;
-    inset:0;
-    width:100%;
-    height:100%;
-    pointer-events:none;
-    z-index:0;
-}
-
-/* HEADER */
-
-header{
-    position:sticky;
-    top:0;
-    z-index:1000;
-    background:rgba(3,5,8,.96);
-    backdrop-filter:blur(12px);
-    border-bottom:2px solid var(--cyan);
-    box-shadow:0 0 20px rgba(0,243,255,.35);
-    padding:12px 5%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
-}
-
-.brand-main{
-    display:block;
-    font-family:'Orbitron',sans-serif;
-    font-size:2rem;
-    font-weight:900;
-    letter-spacing:2px;
-    background:linear-gradient(90deg,var(--cyan),#fff,var(--purple));
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
-
-.brand-sub{
-    display:block;
-    font-family:'Rajdhani',sans-serif;
-    color:var(--purple);
-    letter-spacing:4px;
-    font-size:1.1rem;
-    text-shadow:0 0 8px var(--purple);
-}
-
-nav{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    flex-wrap:wrap;
-}
-
-.nav-btn,
-.music-btn{
-    cursor:pointer;
-}
-
-.nav-btn{
-    padding:8px 13px;
-    border-radius:6px;
-    border:1px solid transparent;
-    background:transparent;
-    color:#fff;
-    font-family:'Rajdhani',sans-serif;
-    font-size:1rem;
-    font-weight:700;
-    text-transform:uppercase;
-}
-
-.nav-btn:hover,
-.nav-btn.active{
-    color:var(--cyan);
-    border-color:var(--cyan);
-    background:rgba(0,243,255,.12);
-    box-shadow:0 0 15px rgba(0,243,255,.4);
-}
-
-.music-btn{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    border:1px solid var(--purple);
-    background:rgba(157,78,221,.15);
-    color:var(--purple);
-}
-
-/* PAGES */
-
-.page{
-    display:none;
-    position:relative;
-    z-index:2;
-    padding:35px 5%;
-    animation:fade .3s ease;
-}
-
-.page.active{
-    display:block;
-}
-
-@keyframes fade{
-    from{opacity:0;transform:translateY(10px)}
-    to{opacity:1;transform:translateY(0)}
-}
-
-/* HERO */
-
-.hero{
-    min-height:380px;
-    border:2px solid rgba(0,243,255,.4);
-    border-radius:18px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:30px;
-    margin-bottom:35px;
-    background:
-    linear-gradient(rgba(3,5,8,.72),rgba(3,5,8,.95)),
-    url("https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1400&q=80")
-    center/cover;
-    box-shadow:0 0 35px rgba(0,243,255,.25);
-}
-
-.hero h1{
-    font-family:'Orbitron',sans-serif;
-    font-size:clamp(2.2rem,6vw,4rem);
-    line-height:1.15;
-}
-
-.cyan{color:var(--cyan)}
-.purple{color:var(--purple)}
-
-.hero p{
-    color:var(--dim);
-    margin-top:15px;
-}
-
-.search{
-    max-width:500px;
-    margin:25px auto 0;
-}
-
-.search input{
-    width:100%;
-    padding:14px 20px;
-    border:2px solid var(--cyan);
-    border-radius:30px;
-    outline:none;
-    background:rgba(3,5,8,.9);
-    color:#fff;
-    font-size:1rem;
-}
-
-/* TITLES */
-
-.section-title{
-    text-align:center;
-    font-family:'Orbitron',sans-serif;
-    color:var(--cyan);
-    margin-bottom:25px;
-}
-
-/* CARDS */
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-}
-
-.card{
-    background:rgba(12,16,26,.9);
-    border:1px solid rgba(0,243,255,.35);
-    border-radius:12px;
-    padding:22px;
-    text-align:center;
-    position:relative;
-    transition:.3s;
-    backdrop-filter:blur(5px);
-}
-
-.card:hover{
-    transform:translateY(-7px);
-    border-color:var(--cyan);
-    box-shadow:0 0 25px rgba(0,243,255,.4);
-}
-
-.icon{
-    font-size:3rem;
-    color:var(--cyan);
-    margin-bottom:12px;
-    filter:drop-shadow(0 0 12px var(--cyan));
-}
-
-.card-title{
-    font-family:'Rajdhani',sans-serif;
-    font-size:1.4rem;
-    font-weight:700;
-}
-
-.price{
-    color:var(--green);
-    font-weight:700;
-    font-size:1.15rem;
-    margin:8px 0 15px;
-}
-
-.tag{
-    position:absolute;
-    top:10px;
-    right:10px;
-    background:var(--orange);
-    padding:3px 8px;
-    border-radius:4px;
-    font-size:.7rem;
-    font-weight:bold;
-}
-
-.buy{
-    width:100%;
-    border:0;
-    border-radius:6px;
-    padding:11px;
-    cursor:pointer;
-    background:linear-gradient(45deg,var(--cyan),var(--purple));
-    color:#000;
-    font-family:'Rajdhani',sans-serif;
-    font-size:1.1rem;
-    font-weight:800;
-}
-
-.buy:hover{
-    filter:brightness(1.2);
-    box-shadow:0 0 15px var(--cyan);
-}
-
-/* VERIFY */
-
-.verify-box{
-    max-width:500px;
-    margin:30px auto;
-    background:rgba(12,16,26,.9);
-    border:1px solid rgba(0,243,255,.4);
-    border-radius:14px;
-    padding:25px;
-}
-
-.input{
-    width:100%;
-    padding:13px;
-    margin-top:8px;
-    border-radius:7px;
-    border:1px solid var(--cyan);
-    outline:none;
-    background:#030508;
-    color:#fff;
-}
-
-/* MODAL */
-
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    z-index:3000;
-    background:rgba(0,0,0,.88);
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-
-.modal.active{
-    display:flex;
-}
-
-.modal-box{
-    width:100%;
-    max-width:480px;
-    background:#0d121d;
-    border:2px solid var(--cyan);
-    border-radius:16px;
-    padding:25px;
-    position:relative;
-    box-shadow:0 0 35px rgba(0,243,255,.5);
-}
-
-.close{
-    position:absolute;
-    right:18px;
-    top:10px;
-    font-size:30px;
-    color:var(--dim);
-    cursor:pointer;
-}
-
-.close:hover{
-    color:#ff0055;
-}
-
-.order-info{
-    background:#030508;
-    padding:15px;
-    border-radius:8px;
-    margin:18px 0;
-}
-
-.row{
-    display:flex;
-    justify-content:space-between;
-    margin:8px 0;
-}
-
-.whatsapp{
-    width:100%;
-    margin-top:18px;
-    padding:14px;
-    border:0;
-    border-radius:8px;
-    background:#25D366;
-    color:#fff;
-    font-size:1rem;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.whatsapp:hover{
-    box-shadow:0 0 20px rgba(37,211,102,.6);
-}
-
-/* FLOATING WA */
-
-.floating-wa{
-    position:fixed;
-    right:25px;
-    bottom:25px;
-    z-index:1500;
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#25D366;
-    color:#fff;
-    text-decoration:none;
-    font-size:2rem;
-    box-shadow:0 0 20px rgba(37,211,102,.5);
-}
-
-.floating-wa:hover{
-    transform:scale(1.1);
-}
-
-/* FOOTER */
-
-footer{
-    position:relative;
-    z-index:2;
-    text-align:center;
-    padding:35px 20px;
-    margin-top:40px;
-    background:#020305;
-    border-top:1px solid rgba(0,243,255,.3);
-}
-
-footer h2{
-    font-family:'Orbitron',sans-serif;
-    color:var(--cyan);
-    font-size:1.4rem;
-}
-
-footer p{
-    color:var(--dim);
-    margin-top:8px;
-    font-size:.85rem;
-}
-
-/* MOBILE */
-
-@media(max-width:800px){
-
-    header{
-        flex-direction:column;
-        align-items:center;
-    }
-
-    nav{
-        justify-content:center;
-    }
-
-    .brand-main{
-        font-size:1.7rem;
-    }
-
-    .nav-btn{
-        font-size:.85rem;
-        padding:7px 9px;
-    }
-
-}
-
-@media(max-width:500px){
-
-    .page{
-        padding:25px 4%;
-    }
-
-    .hero{
-        min-height:350px;
-    }
-
-    .grid{
-        grid-template-columns:1fr;
-    }
-
-    .floating-wa{
-        right:18px;
-        bottom:18px;
-    }
-}
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GAMING IDU | GAMING VENOM</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #030508;
+            --card: rgba(12, 16, 26, 0.92);
+            --cyan: #00f3ff;
+            --purple: #9d4edd;
+            --green: #00ff66;
+            --orange: #ff5500;
+            --white: #ffffff;
+            --dim: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--white);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        #diamondCanvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 12px 5%;
+            background: rgba(3, 5, 8, 0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid var(--cyan);
+            box-shadow: 0 0 20px rgba(0,243,255,.35);
+        }
+
+        .brand-main {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--cyan), white, var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-sub {
+            display: block;
+            font-family: 'Rajdhani', sans-serif;
+            color: var(--purple);
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            text-shadow: 0 0 8px var(--purple);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        nav button {
+            background: transparent;
+            border: 1px solid transparent;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        nav button:hover,
+        nav button.active {
+            color: var(--cyan);
+            border-color: var(--cyan);
+            background: rgba(0,243,255,.12);
+            box-shadow: 0 0 12px rgba(0,243,255,.4);
+        }
+
+        .music-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--purple);
+            color: var(--purple);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .page-content {
+            display: none;
+            position: relative;
+            z-index: 2;
+            padding: 30px 5%;
+            animation: fadeIn .4s ease;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero {
+            min-height: 350px;
+            border: 2px solid rgba(0,243,255,.4);
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 25px;
+            margin-bottom: 35px;
+            background:
+                linear-gradient(rgba(3,5,8,.7), rgba(3,5,8,.95)),
+                url("https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1400&q=80")
+                center/cover;
+            box-shadow: 0 0 35px rgba(0,243,255,.25);
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            line-height: 1.15;
+        }
+
+        .hero p {
+            color: var(--dim);
+            margin-top: 15px;
+        }
+
+        .search-box {
+            max-width: 500px;
+            margin: 25px auto 0;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 30px;
+            border: 2px solid var(--cyan);
+            outline: none;
+            background: rgba(3,5,8,.9);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--cyan);
+            margin-bottom: 20px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            position: relative;
+            background: var(--card);
+            border: 1px solid rgba(0,243,255,.4);
+            border-radius: 12px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            border-color: var(--cyan);
+            box-shadow: 0 0 25px rgba(0,243,255,.4);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--cyan);
+            margin-bottom: 12px;
+            filter: drop-shadow(0 0 10px var(--cyan));
+        }
+
+        .card-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .card-price {
+            color: var(--green);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 8px 0 15px;
+        }
+
+        .tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--orange);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: .7rem;
+            font-weight: 800;
+        }
+
+        .btn {
+            width: 100%;
+            border: none;
+            border-radius: 7px;
+            padding: 11px;
+            cursor: pointer;
+            background: linear-gradient(45deg, var(--cyan), var(--purple));
+            color: #000;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            box-shadow: 0 0 18px var(--cyan);
+        }
+
+        .verify-box {
+            max-width: 500px;
+            margin: 25px auto;
+            padding: 25px;
+            background: var(--card);
+            border: 1px solid rgba(0,243,255,.4);
+            border-radius: 12px;
+        }
+
+        .input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border-radius: 7px;
+            border: 1px solid var(--cyan);
+            background: #030508;
+            color: white;
+            outline: none;
+        }
+
+        #verifyStatus {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0,0,0,.88);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-box {
+            position: relative;
+            width: 100%;
+            max-width: 480px;
+            background: #0d121d;
+            border: 2px solid var(--cyan);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 0 35px rgba(0,243,255,.5);
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 18px;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--dim);
+        }
+
+        .close:hover {
+            color: #ff0055;
+        }
+
+        .order-info {
+            background: #030508;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 18px 0;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin: 7px 0;
+        }
+
+        .whatsapp-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #25D366;
+            color: white;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .whatsapp-btn:hover {
+            box-shadow: 0 0 20px rgba(37,211,102,.6);
+        }
+
+        .floating-wa {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            width: 60px;
+            height: 60px;
+            z-index: 999;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #25D366;
+            color: white;
+            text-decoration: none;
+            font-size: 2rem;
+            box-shadow: 0 0 20px rgba(37,211,102,.5);
+        }
+
+        footer {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(0,243,255,.4);
+            background: #020305;
+        }
+
+        footer h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--cyan);
+        }
+
+        footer p {
+            color: var(--dim);
+            margin-top: 7px;
+            font-size: .85rem;
+        }
+
+        @media(max-width: 750px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            .brand-main {
+                font-size: 1.6rem;
+            }
+
+            .hero {
+                min-height: 320px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<canvas id="diamondCanvas"></canvas>
+    <canvas id="diamondCanvas"></canvas>
 
-<!-- MUSIC -->
+    <!-- MUSIC -->
+    <audio id="bgMusic" loop>
+        <source src="phonk.mp3" type="audio/mpeg">
+    </audio>
 
-<audio id="phonkMusic" loop>
-    <source src="phonk.mp3" type="audio/mpeg">
-</audio>
+    <!-- HEADER -->
+    <header>
 
-<!-- HEADER -->
+        <div>
+            <span class="brand-main">GAMING IDU</span>
+            <span class="brand-sub">GAMING VENOM</span>
+        </div>
 
-<header>
+        <nav>
 
-```
-<div>
-    <span class="brand-main">GAMING IDU</span>
-    <span class="brand-sub">GAMING VENOM</span>
-</div>
+            <button class="nav-btn active"
+                    onclick="showPage('home-page', this)">
+                Home
+            </button>
 
-<nav>
-    <button class="nav-btn active" onclick="showPage('home',this)">Home</button>
-    <button class="nav-btn" onclick="showPage('diamonds',this)">Diamonds</button>
-    <button class="nav-btn" onclick="showPage('passes',this)">Passes</button>
-    <button class="nav-btn" onclick="showPage('verify',this)">Verify ID</button>
+            <button class="nav-btn"
+                    onclick="showPage('diamonds-page', this)">
+                Diamonds
+            </button>
 
-    <button class="music-btn" onclick="toggleMusic(event)">
-        <i class="fa-solid fa-volume-xmark" id="musicIcon"></i>
-    </button>
-</nav>
-```
+            <button class="nav-btn"
+                    onclick="showPage('passes-page', this)">
+                Passes
+            </button>
 
-</header>
+            <button class="nav-btn"
+                    onclick="showPage('verify-page', this)">
+                Verify ID
+            </button>
 
-<!-- HOME -->
+            <button class="music-btn"
+                    onclick="toggleAudio(event)"
+                    title="Music">
 
-<section id="home" class="page active">
+                <i class="fa-solid fa-volume-xmark"
+                   id="musicIcon"></i>
 
-```
-<div class="hero">
+            </button>
 
-    <div>
+        </nav>
 
-        <h1>
-            <span class="cyan">GAMING IDU</span><br>
-            <span class="purple">GAMING VENOM</span>
-        </h1>
+    </header>
 
-        <p>
-            Free Fire Diamond & Membership Store<br>
-            Fast WhatsApp Top-Up
-        </p>
 
-        <div class="search">
+    <!-- HOME -->
+    <section id="home-page" class="page-content active">
+
+        <div class="hero">
+
+            <div>
+
+                <h1>
+                    <span style="color:var(--cyan)">
+                        GAMING IDU
+                    </span>
+                    <br>
+                    <span style="color:var(--purple)">
+                        GAMING VENOM
+                    </span>
+                </h1>
+
+                <p>
+                    Free Fire Diamond & Membership Store
+                </p>
+
+                <div class="search-box">
+                    <input
+                        type="text"
+                        id="homeSearch"
+                        oninput="filterPackages()"
+                        placeholder="🔍 Search Diamonds or Passes">
+                </div>
+
+            </div>
+
+        </div>
+
+        <h2 class="section-title">
+            💎 HOT DIAMOND PACKAGES
+        </h2>
+
+        <div class="cards-grid">
+
+            <div class="card searchable">
+                <span class="tag">HOT</span>
+                <i class="fa-solid fa-gem card-icon"></i>
+                <div class="card-title">100 Diamonds</div>
+                <div class="card-price">LKR 320</div>
+                <button class="btn"
+                        onclick="openModal('100 Diamonds','LKR 320')">
+                    BUY NOW
+                </button>
+            </div>
+
+            <div class="card searchable">
+                <span class="tag">BEST VALUE</span>
+                <i class="fa-solid fa-gem card-icon"></i>
+                <div class="card-title">310 Diamonds</div>
+                <div class="card-price">LKR 990</div>
+                <button class="btn"
+                        onclick="openModal('310 Diamonds','LKR 990')">
+                    BUY NOW
+                </button>
+            </div>
+
+            <div class="card searchable">
+                <span class="tag">POPULAR</span>
+                <i class="fa-solid fa-gem card-icon"></i>
+                <div class="card-title">520 Diamonds</div>
+                <div class="card-price">LKR 1,630</div>
+                <button class="btn"
+                        onclick="openModal('520 Diamonds','LKR 1,630')">
+                    BUY NOW
+                </button>
+            </div>
+
+            <div class="card searchable">
+                <span class="tag"
+                      style="background:var(--purple)">
+                    PASS
+                </span>
+                <i class="fa-solid fa-fire card-icon"
+                   style="color:var(--purple)">
+                </i>
+                <div class="card-title">Weekly Pass</div>
+                <div class="card-price">Contact Price</div>
+                <button class="btn"
+                        onclick="openModal('Weekly Pass','Contact Price')">
+                    BUY NOW
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DIAMONDS -->
+    <section id="diamonds-page" class="page-content">
+
+        <h2 class="section-title">
+            💎 FREE FIRE DIAMONDS
+        </h2>
+
+        <div class="cards-grid">
+
+            <div class="card searchable">
+                <i class="fa-solid fa-gem card-icon"></i>
+                <div class="card-title">25 Diamonds</div>
+                <div class="card-price">LKR 90</div>
+                <button class="btn"
+                        onclick="openModal('25 Diamonds','LKR 90')">
+                    ORDER
+                </button>
+            </div>
+
+            <div class="card searchable">
+                <i class="fa-solid fa-gem card-icon"></i>
+                <div class="card-title">50 Diamonds</div>
+                <div class="card-price">LKR 180</div>
+                <button class="btn"
+                        onclick="openModal('50 Diamonds','LKR 180')">
+                    ORDER
+                </button>
+            </div>
+
+            <div class="card searchable">
+                <i class="fa-solid fa-gem card-icon"></i>
+                <div class="card-title">100 Diamonds</div>
+                <div class="card-price">LKR 320</div>
+                <button class="btn"
+                        onclick="openModal('100 Diamonds','LKR 320')">
+                    ORDER
+                </button>
+            </div>
+
+            <div class="card searchable">
+                <i class="fa-solid fa-gem card-icon"></i>
+                <div class="card-title">200 Diamonds</div>
+                <div class="card-price">LKR 520</div>
+                <button class="btn"
+                        onclick="openModal('200 Diamonds','LKR 520')">
+                    ORDER
+                </button>
+            </div>
+
+            <div class="card searchable">
+                <i class="fa-solid fa-gem card-icon"></i>
+                <div class="card-title">310 Diamonds</div>
+                <div class="card-price">LKR 990</div>
+                <button class="btn"
+                        onclick="openModal('310 Diamonds','LKR 990')">
+                    ORDER
+                </button>
+            </div>
+
+            <div class="card searchable">
+                <i class="fa-solid fa-gem card-icon"></i>
+                <div class="card-title">520 Diamonds</div>
+                <div class="card-price">LKR 1,630</div>
+                <button class="btn"
+                        onclick="openModal('520 Diamonds','LKR 1,630')">
+                    ORDER
+                </button>
+            </div>
+
+            <div class="card searchable">
+                <i class="fa-solid fa-gem card-icon"></i>
+                <div class="card-title">1060 Diamonds</div>
+                <div class="card-price">LKR 3,100</div>
+                <button class="btn"
+                        onclick="openModal('1060 Diamonds','LKR 3,100')">
+                    ORDER
+                </button>
+            </div>
+
+            <div class="card searchable">
+                <span class="tag"
+                      style="background:var(--green);color:#000">
+                    ULTIMATE
+                </span>
+                <i class="fa-solid fa-gem card-icon"></i>
+                <div class="card-title">5600 Diamonds</div>
+                <div class="card-price">LKR 15,800</div>
+                <button class="btn"
+                        onclick="openModal('5600 Diamonds','LKR 15,800')">
+                    ORDER
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PASSES -->
+    <section id="passes-page" class="page-content">
+
+        <h2 class="section-title"
+            style="color:var(--purple)">
+            🎟️ FREE FIRE PASSES
+        </h2>
+
+        <div class="cards-grid">
+
+            <div class="card searchable">
+                <i class="fa-solid fa-ticket card-icon"
+                   style="color:var(--purple)">
+                </i>
+                <div class="card-title">Weekly Lite</div>
+                <div class="card-price">Contact Price</div>
+                <button class="btn"
+                        onclick="openModal('Weekly Lite Pass','Contact Price')">
+                    ORDER PASS
+                </button>
+            </div>
+
+            <div class="card searchable">
+                <span class="tag">HOT</span>
+                <i class="fa-solid fa-fire card-icon"
+                   style="color:#ff6b00">
+                </i>
+                <div class="card-title">Weekly Pass</div>
+                <div class="card-price">Contact Price</div>
+                <button class="btn"
+                        onclick="openModal('Weekly Pass','Contact Price')">
+                    ORDER PASS
+                </button>
+            </div>
+
+            <div class="card searchable">
+                <i class="fa-solid fa-crown card-icon"
+                   style="color:#ffd700">
+                </i>
+                <div class="card-title">Monthly Pass</div>
+                <div class="card-price">Contact Price</div>
+                <button class="btn"
+                        onclick="openModal('Monthly Pass','Contact Price')">
+                    ORDER PASS
+                </button>
+            </div>
+
+            <div class="card searchable">
+                <i class="fa-solid fa-bolt card-icon"></i>
+                <div class="card-title">Level Up Pass</div>
+                <div class="card-price">Contact Price</div>
+                <button class="btn"
+                        onclick="openModal('Level Up Pass','Contact Price')">
+                    ORDER PASS
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- VERIFY -->
+    <section id="verify-page" class="page-content">
+
+        <h2 class="section-title">
+            🔐 UID FORMAT CHECK
+        </h2>
+
+        <div class="verify-box">
+
+            <p style="color:var(--dim)">
+                Enter your Free Fire Player UID:
+            </p>
+
             <input
                 type="text"
-                id="homeSearch"
-                oninput="filterPackages()"
-                placeholder="🔍 Search Diamonds or Passes..."
-            >
+                id="testUID"
+                class="input"
+                inputmode="numeric"
+                placeholder="Example: 703035881">
+
+            <button
+                class="btn"
+                style="margin-top:15px"
+                onclick="checkUID()">
+                VERIFY FORMAT
+            </button>
+
+            <div id="verifyStatus"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ORDER MODAL -->
+    <div id="orderModal" class="modal">
+
+        <div class="modal-box">
+
+            <span class="close"
+                  onclick="closeModal()">
+                &times;
+            </span>
+
+            <h2 style="font-family:'Orbitron';color:var(--cyan)">
+                COMPLETE ORDER
+            </h2>
+
+            <p style="color:var(--dim);font-size:.85rem">
+                GAMING IDU / GAMING VENOM
+            </p>
+
+            <div class="order-info">
+
+                <div class="row">
+                    <span>Package</span>
+                    <strong id="modalPackage"
+                            style="color:var(--cyan)">
+                        -
+                    </strong>
+                </div>
+
+                <div class="row">
+                    <span>Price</span>
+                    <strong id="modalPrice"
+                            style="color:var(--green)">
+                        -
+                    </strong>
+                </div>
+
+            </div>
+
+            <label style="color:var(--dim);font-size:.85rem">
+                FREE FIRE PLAYER UID
+            </label>
+
+            <input
+                type="text"
+                id="modalUID"
+                class="input"
+                inputmode="numeric"
+                placeholder="Enter your UID">
+
+            <button
+                class="whatsapp-btn"
+                style="margin-top:15px"
+                onclick="sendWhatsAppOrder()">
+
+                <i class="fa-brands fa-whatsapp"></i>
+                SEND ORDER TO WHATSAPP
+
+            </button>
+
+            <p style="text-align:center;color:#ff0055;font-size:.75rem;margin-top:15px">
+                🔒 Password or OTP is NOT required.
+            </p>
+
         </div>
 
     </div>
 
-</div>
 
-<h2 class="section-title">💎 HOT DIAMOND PACKAGES</h2>
+    <!-- FLOATING WHATSAPP -->
+    <a
+        class="floating-wa"
+        href="https://wa.me/94703035881"
+        target="_blank"
+        rel="noopener">
 
-<div class="grid searchable-container">
-
-    <div class="card searchable">
-        <span class="tag">HOT</span>
-        <i class="fa-solid fa-gem icon"></i>
-        <div class="card-title">100 Diamonds</div>
-        <div class="price">LKR 320</div>
-        <button class="buy" onclick="openModal('100 Diamonds','LKR 320')">
-            BUY NOW
-        </button>
-    </div>
-
-    <div class="card searchable">
-        <span class="tag">BEST VALUE</span>
-        <i class="fa-solid fa-gem icon"></i>
-        <div class="card-title">310 Diamonds</div>
-        <div class="price">LKR 990</div>
-        <button class="buy" onclick="openModal('310 Diamonds','LKR 990')">
-            BUY NOW
-        </button>
-    </div>
-
-    <div class="card searchable">
-        <span class="tag">POPULAR</span>
-        <i class="fa-solid fa-gem icon"></i>
-        <div class="card-title">520 Diamonds</div>
-        <div class="price">LKR 1,630</div>
-        <button class="buy" onclick="openModal('520 Diamonds','LKR 1,630')">
-            BUY NOW
-        </button>
-    </div>
-
-    <div class="card searchable">
-        <span class="tag">PASS</span>
-        <i class="fa-solid fa-fire icon" style="color:var(--purple)"></i>
-        <div class="card-title">Weekly Pass</div>
-        <div class="price">Contact Price</div>
-        <button class="buy" onclick="openModal('Weekly Pass','Contact Price')">
-            BUY NOW
-        </button>
-    </div>
-
-</div>
-```
-
-</section>
-
-<!-- DIAMONDS -->
-
-<section id="diamonds" class="page">
-
-```
-<h2 class="section-title">💎 FREE FIRE DIAMONDS</h2>
-
-<div class="grid">
-
-    <div class="card">
-        <i class="fa-solid fa-gem icon"></i>
-        <div class="card-title">25 Diamonds</div>
-        <div class="price">LKR 90</div>
-        <button class="buy" onclick="openModal('25 Diamonds','LKR 90')">ORDER</button>
-    </div>
-
-    <div class="card">
-        <i class="fa-solid fa-gem icon"></i>
-        <div class="card-title">50 Diamonds</div>
-        <div class="price">LKR 180</div>
-        <button class="buy" onclick="openModal('50 Diamonds','LKR 180')">ORDER</button>
-    </div>
-
-    <div class="card">
-        <span class="tag">HOT</span>
-        <i class="fa-solid fa-gem icon"></i>
-        <div class="card-title">100 Diamonds</div>
-        <div class="price">LKR 320</div>
-        <button class="buy" onclick="openModal('100 Diamonds','LKR 320')">ORDER</button>
-    </div>
-
-    <div class="card">
-        <i class="fa-solid fa-gem icon"></i>
-        <div class="card-title">200 Diamonds</div>
-        <div class="price">LKR 520</div>
-        <button class="buy" onclick="openModal('200 Diamonds','LKR 520')">ORDER</button>
-    </div>
-
-    <div class="card">
-        <span class="tag">POPULAR</span>
-        <i class="fa-solid fa-gem icon"></i>
-        <div class="card-title">310 Diamonds</div>
-        <div class="price">LKR 990</div>
-        <button class="buy" onclick="openModal('310 Diamonds','LKR 990')">ORDER</button>
-    </div>
-
-    <div class="card">
-        <span class="tag">HOT</span>
-        <i class="fa-solid fa-gem icon"></i>
-        <div class="card-title">520 Diamonds</div>
-        <div class="price">LKR 1,630</div>
-        <button class="buy" onclick="openModal('520 Diamonds','LKR 1,630')">ORDER</button>
-    </div>
-
-    <div class="card">
-        <i class="fa-solid fa-gem icon"></i>
-        <div class="card-title">1060 Diamonds</div>
-        <div class="price">LKR 3,100</div>
-        <button class="buy" onclick="openModal('1060 Diamonds','LKR 3,100')">ORDER</button>
-    </div>
-
-    <div class="card">
-        <span class="tag" style="background:var(--green);color:#000">ULTIMATE</span>
-        <i class="fa-solid fa-gem icon"></i>
-        <div class="card-title">5600 Diamonds</div>
-        <div class="price">LKR 15,800</div>
-        <button class="buy" onclick="openModal('5600 Diamonds','LKR 15,800')">ORDER</button>
-    </div>
-
-</div>
-```
-
-</section>
-
-<!-- PASSES -->
-
-<section id="passes" class="page">
-
-```
-<h2 class="section-title" style="color:var(--purple)">
-    🎟️ FREE FIRE PASSES
-</h2>
-
-<div class="grid">
-
-    <div class="card">
-        <i class="fa-solid fa-ticket icon" style="color:var(--purple)"></i>
-        <div class="card-title">Weekly Lite</div>
-        <div class="price">Contact Price</div>
-        <button class="buy" onclick="openModal('Weekly Lite Pass','Contact Price')">
-            ORDER PASS
-        </button>
-    </div>
-
-    <div class="card">
-        <span class="tag">HOT</span>
-        <i class="fa-solid fa-fire icon" style="color:var(--orange)"></i>
-        <div class="card-title">Weekly Pass</div>
-        <div class="price">Contact Price</div>
-        <button class="buy" onclick="openModal('Weekly Pass','Contact Price')">
-            ORDER PASS
-        </button>
-    </div>
-
-    <div class="card">
-        <i class="fa-solid fa-crown icon" style="color:#ffd700"></i>
-        <div class="card-title">Monthly Pass</div>
-        <div class="price">Contact Price</div>
-        <button class="buy" onclick="openModal('Monthly Pass','Contact Price')">
-            ORDER PASS
-        </button>
-    </div>
-
-    <div class="card">
-        <i class="fa-solid fa-bolt icon"></i>
-        <div class="card-title">Level Up Pass</div>
-        <div class="price">Contact Price</div>
-        <button class="buy" onclick="openModal('Level Up Pass','Contact Price')">
-            ORDER PASS
-        </button>
-    </div>
-
-</div>
-```
-
-</section>
-
-<!-- VERIFY -->
-
-<section id="verify" class="page">
-
-```
-<h2 class="section-title">🔐 UID FORMAT CHECK</h2>
-
-<div class="verify-box">
-
-    <p style="color:var(--dim)">
-        Enter your Free Fire UID to check the format.
-    </p>
-
-    <input
-        type="text"
-        id="testUID"
-        class="input"
-        inputmode="numeric"
-        placeholder="Enter Player UID"
-    >
-
-    <button class="buy" style="margin-top:15px" onclick="checkUID()">
-        VERIFY FORMAT
-    </button>
-
-    <div id="verifyStatus" style="margin-top:15px;text-align:center"></div>
-
-</div>
-```
-
-</section>
-
-<!-- ORDER MODAL -->
-
-<div id="orderModal" class="modal">
-
-```
-<div class="modal-box">
-
-    <span class="close" onclick="closeModal()">&times;</span>
-
-    <h2 style="font-family:'Orbitron';color:var(--cyan)">
-        COMPLETE ORDER
-    </h2>
-
-    <p style="color:var(--dim);margin-top:5px">
-        GAMING IDU / GAMING VENOM
-    </p>
-
-    <div class="order-info">
-
-        <div class="row">
-            <span>Package</span>
-            <strong id="modalPackage" class="cyan">-</strong>
-        </div>
-
-        <div class="row">
-            <span>Price</span>
-            <strong id="modalPrice" style="color:var(--green)">-</strong>
-        </div>
-
-    </div>
-
-    <label style="color:var(--dim);font-size:.85rem">
-        ENTER YOUR FREE FIRE UID
-    </label>
-
-    <input
-        type="text"
-        id="modalUID"
-        class="input"
-        inputmode="numeric"
-        placeholder="Example: 703035881"
-    >
-
-    <button class="whatsapp" onclick="sendWhatsAppOrder()">
         <i class="fa-brands fa-whatsapp"></i>
-        SEND ORDER TO WHATSAPP
-    </button>
 
-    <p style="color:#ff0055;text-align:center;font-size:.75rem;margin-top:15px">
-        🔒 Password or OTP is NOT required.
-    </p>
+    </a>
 
-</div>
-```
 
-</div>
+    <!-- FOOTER -->
+    <footer>
 
-<!-- FLOATING WHATSAPP -->
+        <h2>GAMING IDU · GAMING VENOM</h2>
 
-<a
-href="https://wa.me/94703035881"
-target="_blank"
-class="floating-wa"
-aria-label="WhatsApp"
+        <p>
+            WhatsApp Hotline: 0703035881 |
+            Free Fire Top-Up Store
+        </p>
 
->
+        <p>
+            © 2026 GAMING IDU. All Rights Reserved.
+        </p>
 
-```
-<i class="fa-brands fa-whatsapp"></i>
-```
+    </footer>
 
-</a>
 
-<!-- FOOTER -->
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
 
-<footer>
+        let selectedPackage = "";
+        let selectedPrice = "";
 
-```
-<h2>GAMING IDU · GAMING VENOM</h2>
 
-<p>
-    WhatsApp Hotline: 0703035881 |
-    Free Fire Top-Up Store
-</p>
+        /* ================= MUSIC ================= */
 
-<p>
-    © 2026 GAMING IDU. All Rights Reserved.
-</p>
-```
+        function toggleAudio(event) {
 
-</footer>
+            if (event) {
+                event.stopPropagation();
+            }
 
-<script>
+            const music = document.getElementById("bgMusic");
+            const icon = document.getElementById("musicIcon");
 
-/* =========================
-   VARIABLES
-========================= */
+            if (music.paused) {
 
-let selectedPackage = "";
-let selectedPrice = "";
+                music.play()
+                    .then(() => {
+                        icon.className = "fa-solid fa-music";
+                    })
+                    .catch(() => {
+                        alert("Please make sure phonk.mp3 is in the same folder as index.html");
+                    });
 
+            } else {
 
-/* =========================
-   PAGE SWITCH
-========================= */
+                music.pause();
+                icon.className = "fa-solid fa-volume-xmark";
 
-function showPage(pageId, button){
-
-    document.querySelectorAll(".page").forEach(page=>{
-        page.classList.remove("active");
-    });
-
-    document.querySelectorAll(".nav-btn").forEach(btn=>{
-        btn.classList.remove("active");
-    });
-
-    const page = document.getElementById(pageId);
-
-    if(page){
-        page.classList.add("active");
-    }
-
-    if(button){
-        button.classList.add("active");
-    }
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-}
-
-
-/* =========================
-   MODAL
-========================= */
-
-function openModal(packageName, price){
-
-    selectedPackage = packageName;
-    selectedPrice = price;
-
-    document.getElementById("modalPackage").textContent = packageName;
-    document.getElementById("modalPrice").textContent = price;
-
-    document.getElementById("modalUID").value = "";
-
-    document.getElementById("orderModal").classList.add("active");
-}
-
-
-function closeModal(){
-
-    document.getElementById("orderModal").classList.remove("active");
-}
-
-
-/* Close modal by clicking outside */
-
-document.getElementById("orderModal").addEventListener("click",function(e){
-
-    if(e.target === this){
-        closeModal();
-    }
-
-});
-
-
-/* =========================
-   WHATSAPP ORDER
-========================= */
-
-function sendWhatsAppOrder(){
-
-    const uid = document.getElementById("modalUID").value.trim();
-
-    if(!/^\d{5,15}$/.test(uid)){
-
-        alert("⚠️ Please enter a valid numerical Free Fire UID.");
-
-        return;
-    }
-
-    const phone = "94703035881";
-
-    const message =
-        "🎮 NEW ORDER - GAMING IDU / GAMING VENOM\n\n" +
-        "📦 Package: " + selectedPackage + "\n" +
-        "💰 Price: " + selectedPrice + "\n" +
-        "🆔 Player UID: " + uid + "\n\n" +
-        "Please process my top-up quickly!";
-
-    const url =
-        "https://wa.me/" +
-        phone +
-        "?text=" +
-        encodeURIComponent(message);
-
-    window.open(url,"_blank");
-
-    closeModal();
-}
-
-
-/* =========================
-   UID CHECK
-========================= */
-
-function checkUID(){
-
-    const uid = document.getElementById("testUID").value.trim();
-    const status = document.getElementById("verifyStatus");
-
-    if(/^\d{5,15}$/.test(uid)){
-
-        status.innerHTML =
-            '<span style="color:var(--green)">✅ UID format is valid: ' +
-            uid +
-            '</span>';
-
-    }else{
-
-        status.innerHTML =
-            '<span style="color:#ff0055">❌ Please enter a valid numerical UID.</span>';
-
-    }
-}
-
-
-/* =========================
-   SEARCH
-========================= */
-
-function filterPackages(){
-
-    const query =
-        document.getElementById("homeSearch")
-        .value
-        .toLowerCase()
-        .trim();
-
-    document.querySelectorAll(".searchable").forEach(card=>{
-
-        const title =
-            card.querySelector(".card-title")
-            .textContent
-            .toLowerCase();
-
-        card.style.display =
-            title.includes(query) ? "block" : "none";
-
-    });
-}
-
-
-/* =========================
-   MUSIC
-========================= */
-
-function toggleMusic(event){
-
-    if(event){
-        event.stopPropagation();
-    }
-
-    const music =
-        document.getElementById("phonkMusic");
-
-    const icon =
-        document.getElementById("musicIcon");
-
-    if(music.paused){
-
-        music.play()
-        .then(()=>{
-            icon.className = "fa-solid fa-music";
-        })
-        .catch(()=>{
-            alert("Music file එක play කරන්න බැරි වුණා. phonk.mp3 file එක index.html එක තියෙන folder එකට දාන්න.");
-        });
-
-    }else{
-
-        music.pause();
-
-        icon.className =
-            "fa-solid fa-volume-xmark";
-    }
-}
-
-
-/* =========================
-   FALLING DIAMONDS
-========================= */
-
-const canvas =
-    document.getElementById("diamondCanvas");
-
-const ctx =
-    canvas.getContext("2d");
-
-let diamonds = [];
-
-function resizeCanvas(){
-
-    canvas.width =
-        window.innerWidth;
-
-    canvas.height =
-        window.innerHeight;
-}
-
-window.addEventListener(
-    "resize",
-    resizeCanvas
-);
-
-resizeCanvas();
-
-
-for(let i=0;i<35;i++){
-
-    diamonds.push({
-
-        x:Math.random()*canvas.width,
-
-        y:Math.random()*canvas.height,
-
-        size:Math.random()*7+5,
-
-        speedY:Math.random()*1.5+0.7,
-
-        speedX:(Math.random()-0.5)*0.5,
-
-        opacity:Math.random()*0.6+0.2
-
-    });
-
-}
-
-
-function drawDiamond(d){
-
-    ctx.save();
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-        d.x,
-        d.y-d.size
-    );
-
-    ctx.lineTo(
-        d.x+d.size,
-        d.y
-    );
-
-    ctx.lineTo(
-        d.x,
-        d.y+d.size
-    );
-
-    ctx.lineTo(
-        d.x-d.size,
-        d.y
-    );
-
-    ctx.closePath();
-
-    ctx.fillStyle =
-        "rgba(0,243,255," +
-        d.opacity +
-        ")";
-
-    ctx.shadowColor =
-        "#00f3ff";
-
-    ctx.shadowBlur = 10;
-
-    ctx.fill();
-
-    ctx.restore();
-}
-
-
-function animate(){
-
-    ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
-
-    diamonds.forEach(d=>{
-
-        d.y += d.speedY;
-        d.x += d.speedX;
-
-        if(d.y > canvas.height + 20){
-
-            d.y = -20;
-            d.x = Math.random()*canvas.width;
+            }
 
         }
 
-        drawDiamond(d);
 
-    });
+        /* ================= PAGE SWITCH ================= */
 
-    requestAnimationFrame(animate);
-}
+        function showPage(pageId, button) {
 
-animate();
+            const pages =
+                document.querySelectorAll(".page-content");
+
+            pages.forEach(function(page) {
+                page.classList.remove("active");
+            });
+
+            const buttons =
+                document.querySelectorAll(".nav-btn");
+
+            buttons.forEach(function(btn) {
+                btn.classList.remove("active");
+            });
+
+            const selectedPage =
+                document.getElementById(pageId);
+
+            if (selectedPage) {
+                selectedPage.classList.add("active");
+            }
+
+            if (button) {
+                button.classList.add("active");
+            }
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
 
 
-/* =========================
-   ESC KEY CLOSE MODAL
-========================= */
+        /* ================= MODAL ================= */
 
-document.addEventListener("keydown",function(e){
+        function openModal(packageName, price) {
 
-    if(e.key === "Escape"){
-        closeModal();
-    }
+            selectedPackage = packageName;
+            selectedPrice = price;
 
-});
+            document.getElementById("modalPackage").textContent =
+                packageName;
 
-</script>
+            document.getElementById("modalPrice").textContent =
+                price;
+
+            document.getElementById("modalUID").value = "";
+
+            document.getElementById("orderModal")
+                .classList.add("active");
+
+        }
+
+
+        function closeModal() {
+
+            document.getElementById("orderModal")
+                .classList.remove("active");
+
+        }
+
+
+        /* CLOSE MODAL WHEN CLICK OUTSIDE */
+
+        document.getElementById("orderModal")
+            .addEventListener("click", function(event) {
+
+                if (event.target === this) {
+                    closeModal();
+                }
+
+            });
+
+
+        /* ESC KEY CLOSE */
+
+        document.addEventListener("keydown", function(event) {
+
+            if (event.key === "Escape") {
+                closeModal();
+            }
+
+        });
+
+
+        /* ================= WHATSAPP ORDER ================= */
+
+        function sendWhatsAppOrder() {
+
+            const uid =
+                document.getElementById("modalUID")
+                .value.trim();
+
+            if (!/^\d{5,15}$/.test(uid)) {
+
+                alert(
+                    "⚠️ Please enter a valid numerical Free Fire UID."
+                );
+
+                return;
+            }
+
+            const phone = "94703035881";
+
+            const message =
+                "🎮 NEW ORDER - GAMING IDU / GAMING VENOM\n\n" +
+                "📦 Package: " + selectedPackage + "\n" +
+                "💰 Price: " + selectedPrice + "\n" +
+                "🆔 Player UID: " + uid + "\n\n" +
+                "Please process my top-up quickly!";
+
+            const whatsappURL =
+                "https://wa.me/" +
+                phone +
+                "?text=" +
+                encodeURIComponent(message);
+
+            window.open(
+                whatsappURL,
+                "_blank",
+                "noopener"
+            );
+
+            closeModal();
+
+        }
+
+
+        /* ================= SEARCH ================= */
+
+        function filterPackages() {
+
+            const input =
+                document.getElementById("homeSearch");
+
+            const query =
+                input.value.toLowerCase().trim();
+
+            const cards =
+                document.querySelectorAll(".searchable");
+
+            cards.forEach(function(card) {
+
+                const title =
+                    card.querySelector(".card-title")
+                    .textContent
+                    .toLowerCase();
+
+                if (title.includes(query)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+
+            });
+
+        }
+
+
+        /* ================= UID CHECK ================= */
+
+        function checkUID() {
+
+            const uid =
+                document.getElementById("testUID")
+                .value.trim();
+
+            const status =
+                document.getElementById("verifyStatus");
+
+            if (/^\d{5,15}$/.test(uid)) {
+
+                status.innerHTML =
+                    '<span style="color:var(--green)">' +
+                    '✅ UID Format (' +
+                    uid +
+                    ') is valid.' +
+                    '</span>';
+
+            } else {
+
+                status.innerHTML =
+                    '<span style="color:#ff0055">' +
+                    '❌ Please enter a valid numerical UID.' +
+                    '</span>';
+
+            }
+
+        }
+
+
+        /* ================= FALLING DIAMONDS ================= */
+
+        const canvas =
+            document.getElementById("diamondCanvas");
+
+        const ctx =
+            canvas.getContext("2d");
+
+        const diamonds = [];
+
+        const diamondCount = 35;
+
+
+        function resizeCanvas() {
+
+            canvas.width =
+                window.innerWidth;
+
+            canvas.height =
+                window.innerHeight;
+
+        }
+
+
+        window.addEventListener(
+            "resize",
+            resizeCanvas
+        );
+
+        resizeCanvas();
+
+
+        for (let i = 0; i < diamondCount; i++) {
+
+            diamonds.push({
+
+                x: Math.random() * canvas.width,
+
+                y: Math.random() * canvas.height,
+
+                size: Math.random() * 7 + 5,
+
+                speedY: Math.random() * 1.5 + .5,
+
+                speedX: (Math.random() - .5) * .5,
+
+                opacity: Math.random() * .6 + .2
+
+            });
+
+        }
+
+
+        function drawDiamond(
+            x,
+            y,
+            size,
+            opacity
+        ) {
+
+            ctx.save();
+
+            ctx.beginPath();
+
+            ctx.moveTo(
+                x,
+                y - size
+            );
+
+            ctx.lineTo(
+                x + size,
+                y
+            );
+
+            ctx.lineTo(
+                x,
+                y + size
+            );
+
+            ctx.lineTo(
+                x - size,
+                y
+            );
+
+            ctx.closePath();
+
+            ctx.fillStyle =
+                "rgba(0,243,255," +
+                opacity +
+                ")";
+
+            ctx.shadowColor =
+                "#00f3ff";
+
+            ctx.shadowBlur = 10;
+
+            ctx.fill();
+
+            ctx.restore();
+
+        }
+
+
+        function animateDiamonds() {
+
+            ctx.clearRect(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+            diamonds.forEach(function(diamond) {
+
+                diamond.y +=
+                    diamond.speedY;
+
+                diamond.x +=
+                    diamond.speedX;
+
+                if (diamond.y >
+                    canvas.height + 20) {
+
+                    diamond.y = -20;
+
+                    diamond.x =
+                        Math.random() *
+                        canvas.width;
+
+                }
+
+                drawDiamond(
+                    diamond.x,
+                    diamond.y,
+                    diamond.size,
+                    diamond.opacity
+                );
+
+            });
+
+            requestAnimationFrame(
+                animateDiamonds
+            );
+
+        }
+
+
+        animateDiamonds();
+
+    </script>
 
 </body>
 </html>
+```
