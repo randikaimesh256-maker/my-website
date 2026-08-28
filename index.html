@@ -767,5 +767,28 @@
         }
         animateDiamonds();
     </script>
+    <audio id="phonkMusic" loop>
+    <source src="phonk.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    const music = document.getElementById("phonkMusic");
+    const musicBtn = document.querySelector(".music-btn");
+    <div>
+    <button onclick="changeVolume(-0.1)">🔉 −</button>
+    <button onclick="changeVolume(0.1)">🔊 +</button>
+</div>
+
+    musicBtn.addEventListener("click", () => {
+        if (music.paused) {
+            music.play();
+        } else {
+            music.pause();
+        }
+    });
+    function changeVolume(amount) {
+    music.volume = Math.max(0, Math.min(1, music.volume + amount));
+}
+</script>
 </body>
 </html>
