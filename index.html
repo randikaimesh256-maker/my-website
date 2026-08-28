@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GAMING IDU | GAMING VENOM - Free Fire Diamond Store</title>
-    <!-- Google Fonts & FontAwesome Icons -->
+
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -37,7 +37,6 @@
             position: relative;
         }
 
-        /* === FALLING DIAMONDS CANVAS === */
         #diamondCanvas {
             position: fixed;
             top: 0;
@@ -48,7 +47,6 @@
             z-index: 1;
         }
 
-        /* === HEADER === */
         header {
             background: rgba(3, 5, 8, 0.95);
             backdrop-filter: blur(12px);
@@ -111,14 +109,14 @@
             text-transform: uppercase;
         }
 
-        nav button:hover, nav button.active {
+        nav button:hover,
+        nav button.active {
             color: var(--neon-cyan);
             border-color: var(--neon-cyan);
             background: rgba(0, 243, 255, 0.15);
             box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
         }
 
-        /* MUSIC TOGGLE BUTTON */
         .music-btn {
             background: rgba(157, 78, 221, 0.2);
             border: 1px solid var(--neon-purple);
@@ -139,7 +137,6 @@
             box-shadow: 0 0 15px var(--neon-purple);
         }
 
-        /* === CONTENT SECTIONS === */
         .page-content {
             display: none;
             padding: 30px 5%;
@@ -153,11 +150,17 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* === HERO BANNER === */
         .hero-banner {
             position: relative;
             border-radius: 16px;
@@ -165,8 +168,10 @@
             border: 2px solid var(--border-glow);
             box-shadow: 0 0 35px rgba(0, 243, 255, 0.3);
             margin-bottom: 30px;
-            background: linear-gradient(180deg, rgba(3, 5, 8, 0.7) 0%, rgba(3, 5, 8, 0.95) 100%),
-                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            background:
+                linear-gradient(180deg, rgba(3, 5, 8, 0.7) 0%, rgba(3, 5, 8, 0.95) 100%),
+                url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80')
+                center/cover no-repeat;
             min-height: 350px;
             display: flex;
             align-items: center;
@@ -204,7 +209,6 @@
             box-shadow: 0 0 25px rgba(0, 243, 255, 0.7);
         }
 
-        /* === GRID CARDS === */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -243,8 +247,15 @@
         }
 
         @keyframes pulseGlow {
-            0% { transform: scale(1); filter: drop-shadow(0 0 8px var(--neon-cyan)); }
-            100% { transform: scale(1.08); filter: drop-shadow(0 0 18px var(--neon-cyan)); }
+            0% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 8px var(--neon-cyan));
+            }
+
+            100% {
+                transform: scale(1.08);
+                filter: drop-shadow(0 0 18px var(--neon-cyan));
+            }
         }
 
         .card-tag {
@@ -293,11 +304,13 @@
             box-shadow: 0 0 15px var(--neon-cyan);
         }
 
-        /* === MODAL POPUP === */
         .modal-overlay {
             display: none;
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(8px);
             z-index: 2000;
@@ -329,7 +342,9 @@
             cursor: pointer;
         }
 
-        .close-modal:hover { color: #ff0055; }
+        .close-modal:hover {
+            color: #ff0055;
+        }
 
         .btn-whatsapp {
             width: 100%;
@@ -354,7 +369,6 @@
             transform: scale(1.02);
         }
 
-        /* FLOATING WHATSAPP BUTTON */
         .floating-wa {
             position: fixed;
             bottom: 25px;
@@ -387,54 +401,115 @@
             position: relative;
             z-index: 2;
         }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav button {
+                font-size: 0.9rem;
+                padding: 7px 10px;
+            }
+
+            .brand-main {
+                font-size: 1.7rem;
+            }
+
+            .brand-sub {
+                font-size: 1rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
-<body onclick="startAudioOnInteraction()">
 
-    <!-- FALLING DIAMONDS CANVAS -->
+<body>
+
+    <!-- FALLING DIAMONDS -->
     <canvas id="diamondCanvas"></canvas>
 
-    <!-- BACKGROUND AUDIO -->
-    <audio id="bgMusic" loop>
-        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a2a07d.mp3?filename=cyberpunk-action-111863.mp3" type="audio/mpeg">
+    <!-- MUSIC -->
+    <!-- IMPORTANT: phonk.mp3 must be in the SAME folder as this HTML file -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="./phonk.mp3" type="audio/mpeg">
+        Your browser does not support audio.
     </audio>
 
-    <!-- === HEADER === -->
+    <!-- HEADER -->
     <header>
         <div class="brand-box">
             <span class="brand-main">GAMING IDU</span>
             <span class="brand-sub">GAMING VENOM</span>
         </div>
+
         <nav>
-            <button class="nav-btn active" onclick="showPage('home-page', this)">Home</button>
-            <button class="nav-btn" onclick="showPage('diamonds-page', this)">Diamonds</button>
-            <button class="nav-btn" onclick="showPage('passes-page', this)">Passes</button>
-            <button class="nav-btn" onclick="showPage('verify-page', this)">Verify ID</button>
-            <button class="music-btn" onclick="toggleAudio(event)" title="Toggle Music">
-                <i class="fa-solid fa-music" id="musicIcon"></i>
+            <button class="nav-btn active" onclick="showPage('home-page', this)">
+                Home
+            </button>
+
+            <button class="nav-btn" onclick="showPage('diamonds-page', this)">
+                Diamonds
+            </button>
+
+            <button class="nav-btn" onclick="showPage('passes-page', this)">
+                Passes
+            </button>
+
+            <button class="nav-btn" onclick="showPage('verify-page', this)">
+                Verify ID
+            </button>
+
+            <button class="music-btn" id="musicButton" onclick="toggleAudio(event)" title="Toggle Music">
+                <i class="fa-solid fa-volume-xmark" id="musicIcon"></i>
             </button>
         </nav>
     </header>
 
-    <!-- ================= PAGE 1: HOME ================= -->
+    <!-- HOME -->
     <div id="home-page" class="page-content active">
+
         <div class="hero-banner">
             <div style="position:relative; z-index:2; padding:20px;">
+
                 <h1 class="hero-title">
-                    <span style="color:var(--neon-cyan)">GAMING IDU</span> <br>
+                    <span style="color:var(--neon-cyan)">GAMING IDU</span>
+                    <br>
                     <span style="color:var(--neon-purple)">GAMING VENOM</span>
                 </h1>
-                <p style="color: var(--text-dim); font-size: 1.1rem;">Official Free Fire Diamond & Membership Store. Fast WhatsApp Top-Up.</p>
-                
+
+                <p style="color:var(--text-dim); font-size:1.1rem;">
+                    Official Free Fire Diamond & Membership Store.
+                    Fast WhatsApp Top-Up.
+                </p>
+
                 <div class="search-box">
-                    <input type="text" id="homeSearch" onkeyup="filterPackages()" placeholder="🔍 Quick Search Diamonds or Passes...">
+                    <input
+                        type="text"
+                        id="homeSearch"
+                        onkeyup="filterPackages()"
+                        placeholder="🔍 Quick Search Diamonds or Passes..."
+                    >
                 </div>
+
             </div>
         </div>
 
-        <h2 style="font-family:'Orbitron'; color:var(--neon-cyan); text-align:center; margin-bottom: 20px;">💎 HOT DIAMOND PACKAGES</h2>
-        
+        <h2 style="font-family:'Orbitron'; color:var(--neon-cyan); text-align:center; margin-bottom:20px;">
+            💎 HOT DIAMOND PACKAGES
+        </h2>
+
         <div class="cards-grid">
+
             <div class="card" onclick="openModal('100 Diamonds', 'LKR 320')">
                 <span class="card-tag">Hot</span>
                 <i class="fa-solid fa-gem card-icon-glow"></i>
@@ -442,6 +517,7 @@
                 <div class="card-price">LKR 320</div>
                 <button class="btn-action">BUY NOW</button>
             </div>
+
             <div class="card" onclick="openModal('310 Diamonds', 'LKR 990')">
                 <span class="card-tag">Best Value</span>
                 <i class="fa-solid fa-gem card-icon-glow"></i>
@@ -449,6 +525,7 @@
                 <div class="card-price">LKR 990</div>
                 <button class="btn-action">BUY NOW</button>
             </div>
+
             <div class="card" onclick="openModal('520 Diamonds', 'LKR 1,630')">
                 <span class="card-tag">Popular</span>
                 <i class="fa-solid fa-gem card-icon-glow"></i>
@@ -456,6 +533,7 @@
                 <div class="card-price">LKR 1,630</div>
                 <button class="btn-action">BUY NOW</button>
             </div>
+
             <div class="card" onclick="openModal('Weekly Pass', 'Contact Price')">
                 <span class="card-tag" style="background:var(--neon-purple)">Pass</span>
                 <i class="fa-solid fa-fire-flame-curved card-icon-glow" style="color:var(--neon-purple)"></i>
@@ -463,25 +541,33 @@
                 <div class="card-price">Contact Price</div>
                 <button class="btn-action">BUY NOW</button>
             </div>
+
         </div>
     </div>
 
-    <!-- ================= PAGE 2: DIAMONDS ================= -->
+    <!-- DIAMONDS -->
     <div id="diamonds-page" class="page-content">
-        <h2 style="font-family:'Orbitron'; color:var(--neon-cyan); text-align:center;">💎 FREE FIRE DIAMONDS</h2>
+
+        <h2 style="font-family:'Orbitron'; color:var(--neon-cyan); text-align:center;">
+            💎 FREE FIRE DIAMONDS
+        </h2>
+
         <div class="cards-grid">
+
             <div class="card searchable" onclick="openModal('25 Diamonds', 'LKR 90')">
                 <i class="fa-solid fa-gem card-icon-glow"></i>
                 <div class="card-title">25 Diamonds</div>
                 <div class="card-price">LKR 90</div>
                 <button class="btn-action">ORDER</button>
             </div>
+
             <div class="card searchable" onclick="openModal('50 Diamonds', 'LKR 180')">
                 <i class="fa-solid fa-gem card-icon-glow"></i>
                 <div class="card-title">50 Diamonds</div>
                 <div class="card-price">LKR 180</div>
                 <button class="btn-action">ORDER</button>
             </div>
+
             <div class="card searchable" onclick="openModal('100 Diamonds', 'LKR 320')">
                 <span class="card-tag">Hot</span>
                 <i class="fa-solid fa-gem card-icon-glow"></i>
@@ -489,12 +575,14 @@
                 <div class="card-price">LKR 320</div>
                 <button class="btn-action">ORDER</button>
             </div>
+
             <div class="card searchable" onclick="openModal('200 Diamonds', 'LKR 520')">
                 <i class="fa-solid fa-gem card-icon-glow"></i>
                 <div class="card-title">200 Diamonds</div>
                 <div class="card-price">LKR 520</div>
                 <button class="btn-action">ORDER</button>
             </div>
+
             <div class="card searchable" onclick="openModal('310 Diamonds', 'LKR 990')">
                 <span class="card-tag">Popular</span>
                 <i class="fa-solid fa-gem card-icon-glow"></i>
@@ -502,6 +590,7 @@
                 <div class="card-price">LKR 990</div>
                 <button class="btn-action">ORDER</button>
             </div>
+
             <div class="card searchable" onclick="openModal('520 Diamonds', 'LKR 1,630')">
                 <span class="card-tag">Hot</span>
                 <i class="fa-solid fa-gem card-icon-glow"></i>
@@ -509,32 +598,43 @@
                 <div class="card-price">LKR 1,630</div>
                 <button class="btn-action">ORDER</button>
             </div>
+
             <div class="card searchable" onclick="openModal('1060 Diamonds', 'LKR 3,100')">
                 <i class="fa-solid fa-gem card-icon-glow"></i>
                 <div class="card-title">1060 Diamonds</div>
                 <div class="card-price">LKR 3,100</div>
                 <button class="btn-action">ORDER</button>
             </div>
+
             <div class="card searchable" onclick="openModal('5600 Diamonds', 'LKR 15,800')">
-                <span class="card-tag" style="background:var(--neon-green); color:#000;">ULTIMATE</span>
+                <span class="card-tag" style="background:var(--neon-green);color:#000;">
+                    ULTIMATE
+                </span>
                 <i class="fa-solid fa-gem card-icon-glow"></i>
                 <div class="card-title">5600 Diamonds</div>
                 <div class="card-price">LKR 15,800</div>
                 <button class="btn-action">ORDER</button>
             </div>
+
         </div>
     </div>
 
-    <!-- ================= PAGE 3: PASSES ================= -->
+    <!-- PASSES -->
     <div id="passes-page" class="page-content">
-        <h2 style="font-family:'Orbitron'; color:var(--neon-purple); text-align:center;">🎟️ FREE FIRE PASSES</h2>
+
+        <h2 style="font-family:'Orbitron'; color:var(--neon-purple); text-align:center;">
+            🎟️ FREE FIRE PASSES
+        </h2>
+
         <div class="cards-grid">
+
             <div class="card searchable" onclick="openModal('Weekly Lite Pass', 'Contact Price')">
                 <i class="fa-solid fa-ticket card-icon-glow" style="color:var(--neon-purple)"></i>
                 <div class="card-title">Weekly Lite</div>
                 <div class="card-price">Contact Price</div>
                 <button class="btn-action">ORDER PASS</button>
             </div>
+
             <div class="card searchable" onclick="openModal('Weekly Pass', 'Contact Price')">
                 <span class="card-tag">HOT</span>
                 <i class="fa-solid fa-fire card-icon-glow" style="color:#ff6b00"></i>
@@ -542,230 +642,437 @@
                 <div class="card-price">Contact Price</div>
                 <button class="btn-action">ORDER PASS</button>
             </div>
+
             <div class="card searchable" onclick="openModal('Monthly Pass', 'Contact Price')">
                 <i class="fa-solid fa-crown card-icon-glow" style="color:#ffd700"></i>
                 <div class="card-title">Monthly Pass</div>
                 <div class="card-price">Contact Price</div>
                 <button class="btn-action">ORDER PASS</button>
             </div>
+
             <div class="card searchable" onclick="openModal('Level Up Pass', 'Contact Price')">
                 <i class="fa-solid fa-bolt card-icon-glow" style="color:var(--neon-cyan)"></i>
                 <div class="card-title">Level Up Pass</div>
                 <div class="card-price">Contact Price</div>
                 <button class="btn-action">ORDER PASS</button>
             </div>
+
         </div>
     </div>
 
-    <!-- ================= PAGE 4: VERIFY ID ================= -->
+    <!-- VERIFY -->
     <div id="verify-page" class="page-content">
-        <h2 style="font-family:'Orbitron'; color:var(--neon-cyan); text-align:center;">🔐 UID FORMAT CHECK</h2>
-        <div style="max-width:500px; margin:20px auto; background:var(--bg-card); padding:25px; border-radius:12px; border:1px solid var(--border-glow);">
-            <p style="margin-bottom:10px; color:var(--text-dim);">Enter Player UID to check validity before placing order:</p>
-            <input type="number" id="testUID" placeholder="Enter Player UID (e.g. 703035881)" style="width:100%; padding:12px; background:#030508; border:1px solid var(--neon-cyan); border-radius:6px; color:#fff; outline:none;">
-            <button onclick="checkUID()" class="btn-action" style="margin-top:15px;">VERIFY FORMAT</button>
-            <div id="verifyStatus" style="margin-top:15px; font-size:0.9rem;"></div>
+
+        <h2 style="font-family:'Orbitron'; color:var(--neon-cyan); text-align:center;">
+            🔐 UID FORMAT CHECK
+        </h2>
+
+        <div style="max-width:500px;margin:20px auto;background:var(--bg-card);padding:25px;border-radius:12px;border:1px solid var(--border-glow);">
+
+            <p style="margin-bottom:10px;color:var(--text-dim);">
+                Enter Player UID to check validity before placing order:
+            </p>
+
+            <input
+                type="number"
+                id="testUID"
+                placeholder="Enter Player UID (e.g. 703035881)"
+                style="width:100%;padding:12px;background:#030508;border:1px solid var(--neon-cyan);border-radius:6px;color:#fff;outline:none;"
+            >
+
+            <button onclick="checkUID()" class="btn-action" style="margin-top:15px;">
+                VERIFY FORMAT
+            </button>
+
+            <div id="verifyStatus" style="margin-top:15px;font-size:0.9rem;"></div>
+
         </div>
     </div>
 
-    <!-- === ORDER MODAL POPUP === -->
+    <!-- ORDER MODAL -->
     <div class="modal-overlay" id="orderModal">
-        <div class="modal-box">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h3 style="font-family:'Orbitron'; color:var(--neon-cyan); margin-bottom:5px;">COMPLETE ORDER</h3>
-            <p style="color:var(--text-dim); font-size:0.85rem;">GAMING IDU / GAMING VENOM</p>
 
-            <div style="background:#030508; padding:15px; border-radius:8px; margin:15px 0;">
-                <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+        <div class="modal-box">
+
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+
+            <h3 style="font-family:'Orbitron';color:var(--neon-cyan);margin-bottom:5px;">
+                COMPLETE ORDER
+            </h3>
+
+            <p style="color:var(--text-dim);font-size:0.85rem;">
+                GAMING IDU / GAMING VENOM
+            </p>
+
+            <div style="background:#030508;padding:15px;border-radius:8px;margin:15px 0;">
+
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
                     <span>Package:</span>
                     <strong id="modalPackage" style="color:var(--neon-cyan);">-</strong>
                 </div>
-                <div style="display:flex; justify-content:space-between;">
+
+                <div style="display:flex;justify-content:space-between;">
                     <span>Price:</span>
                     <strong id="modalPrice" style="color:var(--neon-green);">-</strong>
                 </div>
+
             </div>
 
             <div>
-                <label style="font-size:0.85rem; color:var(--text-dim);">ENTER YOUR FREE FIRE UID:</label>
-                <input type="number" id="modalUID" placeholder="e.g. 703035881" style="width:100%; padding:12px; background:#030508; border:1px solid var(--border-glow); border-radius:8px; color:#fff; outline:none; margin-top:5px;">
+
+                <label style="font-size:0.85rem;color:var(--text-dim);">
+                    ENTER YOUR FREE FIRE UID:
+                </label>
+
+                <input
+                    type="number"
+                    id="modalUID"
+                    placeholder="e.g. 703035881"
+                    style="width:100%;padding:12px;background:#030508;border:1px solid var(--border-glow);border-radius:8px;color:#fff;outline:none;margin-top:5px;"
+                >
+
             </div>
 
             <button class="btn-whatsapp" onclick="sendWhatsAppOrder()">
-                <i class="fa-brands fa-whatsapp fa-xl"></i> SEND ORDER TO WHATSAPP
+                <i class="fa-brands fa-whatsapp fa-xl"></i>
+                SEND ORDER TO WHATSAPP
             </button>
 
-            <p style="font-size:0.75rem; color:#ff0055; text-align:center; margin-top:15px;">
+            <p style="font-size:0.75rem;color:#ff0055;text-align:center;margin-top:15px;">
                 🔒 Safe System: Password or OTP is NOT required.
             </p>
+
         </div>
     </div>
 
-    <!-- === FLOATING WHATSAPP BUTTON === -->
+    <!-- WHATSAPP -->
     <a href="https://wa.me/94703035881" target="_blank" class="floating-wa">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- === FOOTER === -->
+    <!-- FOOTER -->
     <footer>
-        <h2 style="font-family:'Orbitron'; color:var(--neon-cyan); font-size:1.5rem;">GAMING IDU · GAMING VENOM</h2>
-        <p style="color:var(--text-dim); font-size:0.85rem; margin-top:5px;">WhatsApp Hotline: 0703035881 | Free Fire Top-Up Store</p>
-        <p style="color:var(--text-dim); font-size:0.8rem; margin-top:10px;">&copy; 2026 GAMING IDU. All Rights Reserved.</p>
+
+        <h2 style="font-family:'Orbitron';color:var(--neon-cyan);font-size:1.5rem;">
+            GAMING IDU · GAMING VENOM
+        </h2>
+
+        <p style="color:var(--text-dim);font-size:0.85rem;margin-top:5px;">
+            WhatsApp Hotline: 0703035881 | Free Fire Top-Up Store
+        </p>
+
+        <p style="color:var(--text-dim);font-size:0.8rem;margin-top:10px;">
+            &copy; 2026 GAMING IDU. All Rights Reserved.
+        </p>
+
     </footer>
 
-    <!-- === JAVASCRIPT === -->
+    <!-- JAVASCRIPT -->
     <script>
-        let selectedPackage = '';
-        let selectedPrice = '';
+
+        let selectedPackage = "";
+        let selectedPrice = "";
         let audioStarted = false;
 
-        // Auto/Interaction Audio Player
+        /* ================= MUSIC ================= */
+
+        const music = document.getElementById("bgMusic");
+        const musicIcon = document.getElementById("musicIcon");
+
         function startAudioOnInteraction() {
+
             if (!audioStarted) {
-                const music = document.getElementById('bgMusic');
-                music.play().then(() => {
-                    audioStarted = true;
-                }).catch(() => {});
+
+                music.play()
+                    .then(function () {
+                        audioStarted = true;
+                        musicIcon.className = "fa-solid fa-music";
+                    })
+                    .catch(function () {
+                        audioStarted = false;
+                    });
+
             }
+
         }
 
-        function toggleAudio(e) {
-            e.stopPropagation();
-            const music = document.getElementById('bgMusic');
-            const icon = document.getElementById('musicIcon');
+        document.addEventListener("click", function () {
+
+            if (!audioStarted) {
+                startAudioOnInteraction();
+            }
+
+        }, { once: true });
+
+        function toggleAudio(event) {
+
+            if (event) {
+                event.stopPropagation();
+            }
+
             if (music.paused) {
-                music.play();
-                icon.className = "fa-solid fa-music";
+
+                music.play()
+                    .then(function () {
+                        audioStarted = true;
+                        musicIcon.className = "fa-solid fa-music";
+                    })
+                    .catch(function () {
+                        alert("Music file 'phonk.mp3' not found. Please put phonk.mp3 in the same folder as this HTML file.");
+                    });
+
             } else {
+
                 music.pause();
-                icon.className = "fa-solid fa-volume-xmark";
+                musicIcon.className = "fa-solid fa-volume-xmark";
+
             }
+
         }
 
-        // Single Page Switcher
+        /* ================= PAGE SWITCHER ================= */
+
         function showPage(pageId, btn) {
-            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            
-            document.getElementById(pageId).classList.add('active');
-            btn.classList.add('active');
-            window.scrollTo({top: 0, behavior: 'smooth'});
+
+            document.querySelectorAll(".page-content").forEach(function (page) {
+                page.classList.remove("active");
+            });
+
+            document.querySelectorAll(".nav-btn").forEach(function (button) {
+                button.classList.remove("active");
+            });
+
+            const selectedPage = document.getElementById(pageId);
+
+            if (selectedPage) {
+                selectedPage.classList.add("active");
+            }
+
+            if (btn) {
+                btn.classList.add("active");
+            }
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
         }
 
-        // Modal Handler
+        /* ================= MODAL ================= */
+
         function openModal(pkg, price) {
+
             selectedPackage = pkg;
             selectedPrice = price;
-            
-            document.getElementById('modalPackage').innerText = pkg;
-            document.getElementById('modalPrice').innerText = price;
-            document.getElementById('orderModal').classList.add('active');
+
+            document.getElementById("modalPackage").innerText = pkg;
+            document.getElementById("modalPrice").innerText = price;
+            document.getElementById("orderModal").classList.add("active");
+
         }
 
         function closeModal() {
-            document.getElementById('orderModal').classList.remove('active');
+
+            document.getElementById("orderModal").classList.remove("active");
+
         }
 
-        // WhatsApp Order with Hotline 0703035881
+        document.getElementById("orderModal").addEventListener("click", function (event) {
+
+            if (event.target === this) {
+                closeModal();
+            }
+
+        });
+
+        /* ================= WHATSAPP ================= */
+
         function sendWhatsAppOrder() {
-            const uid = document.getElementById('modalUID').value.trim();
-            if(!uid || uid.length < 5) {
-                alert('⚠️ Please enter a valid Free Fire Player UID!');
+
+            const uid = document.getElementById("modalUID").value.trim();
+
+            if (!uid || uid.length < 5) {
+
+                alert("⚠️ Please enter a valid Free Fire Player UID!");
                 return;
+
             }
 
             const phone = "94703035881";
-            const text = `🎮 *NEW ORDER - GAMING IDU / GAMING VENOM*%0A%0A` +
-                         `📦 *Package:* ${selectedPackage}%0A` +
-                         `💰 *Price:* ${selectedPrice}%0A` +
-                         `🆔 *Player UID:* ${uid}%0A%0A` +
-                         `Please process my top-up quickly!`;
 
-            window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+            const message =
+                "🎮 NEW ORDER - GAMING IDU / GAMING VENOM\n\n" +
+                "📦 Package: " + selectedPackage + "\n" +
+                "💰 Price: " + selectedPrice + "\n" +
+                "🆔 Player UID: " + uid + "\n\n" +
+                "Please process my top-up quickly!";
+
+            const whatsappURL =
+                "https://wa.me/" +
+                phone +
+                "?text=" +
+                encodeURIComponent(message);
+
+            window.open(whatsappURL, "_blank");
+
             closeModal();
+
         }
 
-        // Package Search Filter
+        /* ================= SEARCH ================= */
+
         function filterPackages() {
-            const query = document.getElementById('homeSearch').value.toLowerCase();
-            const items = document.querySelectorAll('.searchable');
-            
-            items.forEach(item => {
-                const title = item.querySelector('.card-title').innerText.toLowerCase();
-                if(title.includes(query)) {
+
+            const searchInput = document.getElementById("homeSearch");
+
+            if (!searchInput) {
+                return;
+            }
+
+            const query = searchInput.value.toLowerCase().trim();
+
+            const items = document.querySelectorAll(".searchable");
+
+            items.forEach(function (item) {
+
+                const titleElement = item.querySelector(".card-title");
+
+                if (!titleElement) {
+                    return;
+                }
+
+                const title = titleElement.innerText.toLowerCase();
+
+                if (title.includes(query)) {
                     item.style.display = "flex";
                 } else {
                     item.style.display = "none";
                 }
+
             });
+
         }
 
-        // UID Format Check
+        /* ================= UID CHECK ================= */
+
         function checkUID() {
-            const uid = document.getElementById('testUID').value.trim();
-            const status = document.getElementById('verifyStatus');
-            if(uid.length >= 5) {
-                status.innerHTML = `<span style="color:var(--neon-green)">✅ UID Format (${uid}) Confirmed. Safe to order.</span>`;
+
+            const uid = document.getElementById("testUID").value.trim();
+            const status = document.getElementById("verifyStatus");
+
+            if (uid.length >= 5) {
+
+                status.innerHTML =
+                    '<span style="color:var(--neon-green)">✅ UID Format (' +
+                    uid +
+                    ') Confirmed. Safe to order.</span>';
+
             } else {
-                status.innerHTML = `<span style="color:#ff0055">❌ Please enter a valid numerical UID.</span>`;
+
+                status.innerHTML =
+                    '<span style="color:#ff0055">❌ Please enter a valid numerical UID.</span>';
+
             }
+
         }
 
-        // === FALLING DIAMONDS ANIMATION SCRIPT ===
-        const canvas = document.getElementById('diamondCanvas');
-        const ctx = canvas.getContext('2d');
+        /* ================= FALLING DIAMONDS ================= */
+
+        const canvas = document.getElementById("diamondCanvas");
+        const ctx = canvas.getContext("2d");
 
         function resizeCanvas() {
+
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+
         }
-        window.addEventListener('resize', resizeCanvas);
+
+        window.addEventListener("resize", resizeCanvas);
+
         resizeCanvas();
 
         const diamonds = [];
         const diamondCount = 35;
 
         for (let i = 0; i < diamondCount; i++) {
+
             diamonds.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
                 size: Math.random() * 8 + 6,
                 speedY: Math.random() * 2 + 1,
-                speedX: Math.sin(Math.random()) * 0.5,
+                speedX: (Math.random() - 0.5) * 0.5,
                 opacity: Math.random() * 0.7 + 0.3
             });
+
         }
 
         function drawDiamond(x, y, size, opacity) {
+
             ctx.save();
+
             ctx.beginPath();
+
             ctx.moveTo(x, y - size);
             ctx.lineTo(x + size, y);
             ctx.lineTo(x, y + size);
             ctx.lineTo(x - size, y);
+
             ctx.closePath();
-            ctx.fillStyle = `rgba(0, 243, 255, ${opacity})`;
-            ctx.shadowColor = '#00f3ff';
+
+            ctx.fillStyle =
+                "rgba(0, 243, 255, " +
+                opacity +
+                ")";
+
+            ctx.shadowColor = "#00f3ff";
             ctx.shadowBlur = 10;
+
             ctx.fill();
+
             ctx.restore();
+
         }
 
         function animateDiamonds() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            diamonds.forEach(d => {
-                d.y += d.speedY;
-                d.x += d.speedX;
 
-                if (d.y > canvas.height) {
-                    d.y = -20;
-                    d.x = Math.random() * canvas.width;
+            ctx.clearRect(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+            diamonds.forEach(function (diamond) {
+
+                diamond.y += diamond.speedY;
+                diamond.x += diamond.speedX;
+
+                if (diamond.y > canvas.height + 20) {
+
+                    diamond.y = -20;
+                    diamond.x = Math.random() * canvas.width;
+
                 }
-                drawDiamond(d.x, d.y, d.size, d.opacity);
+
+                drawDiamond(
+                    diamond.x,
+                    diamond.y,
+                    diamond.size,
+                    diamond.opacity
+                );
+
             });
+
             requestAnimationFrame(animateDiamonds);
+
         }
+
         animateDiamonds();
+
     </script>
+
 </body>
 </html>
