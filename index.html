@@ -757,27 +757,171 @@
             requestAnimationFrame(animateDiamonds);
         }
         animateDiamonds();
- <audio id="phonkMusic" loop>
- <source src="phonk.mp3" type="audio/mpeg">
+<!-- BACKGROUND PHONK MUSIC -->
+<audio id="phonkMusic" loop>
+    <source src="phonk.mp3" type="audio/mpeg">
 </audio>
 
+<!-- === JAVASCRIPT === -->
 <script>
-const music = document.getElementById("phonkMusic");
-const musicBtn = document.querySelector(".music-btn");
+    let selectedPackage = '';
+    let selectedPrice = '';
 
-if (musicBtn) {
-    musicBtn.addEventListener("click", function(e) {
+    // MUSIC
+    function toggleAudio(e) {
         e.stopPropagation();
+
+        const music = document.getElementById('phonkMusic');
+        const icon = document.getElementById('musicIcon');
 
         if (music.paused) {
             music.play();
+            icon.className = "fa-solid fa-music";
         } else {
             music.pause();
+            icon.className = "fa-solid fa-volume-xmark";
         }
-    });
-}
-});
-        
+    }
+
+    // Single Page Switcher
+    function showPage(pageId, btn) {
+        document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+
+        document.getElementById(pageId).classList.add('active');
+        btn.classList.add('active');
+
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    // Modal Handler
+    function openModal(pkg, price) {
+        selectedPackage = pkg;
+        selectedPrice = price;
+
+        document.getElementById('modalPackage').innerText = pkg;
+        document.getElementById('modalPrice').innerText = price;
+        document.getElementById('orderModal').classList.add('active');
+    }
+
+    function closeModal() {
+        document.getElementById('orderModal').classList.remove('active');
+    }
+
+    // WhatsApp Order
+    function sendWhatsAppOrder() {
+        const uid = document.getElementById('modalUID').value.trim();
+
+        if (!uid || uid.length < 5) {
+            alert('⚠️ Please enter a valid Free Fire Player UID!');
+            return;
+        }
+
+        const phone = "94703035881";
+
+        const text =
+            `🎮 *NEW ORDER - GAMING IDU / GAMING VENOM*%0A%0A` +
+            `📦 *Package:* ${selectedPackage}%0A` +
+            `💰 *Price:* ${selectedPrice}%0A` +
+            `🆔 *Player UID:* ${uid}%0A%0A` +
+            `Please process my top-up quickly!`;
+
+        window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+        closeModal();
+    }
+
+    // Package Search Filter
+    function filterPackages() {
+        const query = document.getElementById('homeSearch').value.toLowerCase();
+        const items = document.querySelectorAll('.searchable');
+
+        items.forEach(item => {
+            const title = item.querySelector('.card-title').innerText.toLowerCase();
+
+            if (title.includes(query)) {
+                item.style.display = "flex";
+            } else {
+                item.style.display = "none";
+            }
+        });
+    }
+
+    // UID Format Check
+    function checkUID() {
+        const uid = document.getElementById('testUID').value.trim();
+        const status = document.getElementById('verifyStatus');
+
+        if (uid.length >= 5) {
+            status.innerHTML =
+                `<span style="color:var(--neon-green)">✅ UID Format (${uid}) Confirmed. Safe to order.</span>`;
+        } else {
+            status.innerHTML =
+                `<span style="color:#ff0055">❌ Please enter a valid numerical UID.</span>`;
+        }
+    }
+
+    // FALLING DIAMONDS ANIMATION
+    const canvas = document.getElementById('diamondCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const diamonds = [];
+    const diamondCount = 35;
+
+    for (let i = 0; i < diamondCount; i++) {
+        diamonds.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 8 + 6,
+            speedY: Math.random() * 2 + 1,
+            speedX: Math.sin(Math.random()) * 0.5,
+            opacity: Math.random() * 0.7 + 0.3
+        });
+    }
+
+    function drawDiamond(x, y, size, opacity) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(x, y - size);
+        ctx.lineTo(x + size, y);
+        ctx.lineTo(x, y + size);
+        ctx.lineTo(x - size, y);
+        ctx.closePath();
+
+        ctx.fillStyle = `rgba(0, 243, 255, ${opacity})`;
+        ctx.shadowColor = '#00f3ff';
+        ctx.shadowBlur = 10;
+        ctx.fill();
+        ctx.restore();
+    }
+
+    function animateDiamonds() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        diamonds.forEach(d => {
+            d.y += d.speedY;
+            d.x += d.speedX;
+
+            if (d.y > canvas.height) {
+                d.y = -20;
+                d.x = Math.random() * canvas.width;
+            }
+
+            drawDiamond(d.x, d.y, d.size, d.opacity);
+        });
+
+        requestAnimationFrame(animateDiamonds);
+    }
+
+    animateDiamonds();
+       
 </script>
     
 </body>
